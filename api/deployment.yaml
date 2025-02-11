@@ -5,6 +5,8 @@ metadata:
   namespace: api
   labels:
     app: anti-corruption-layer
+  annotations:
+    config-hash: "{{ .Values.configmap | sha256sum }}"  # ✅ Forces pod restart when ConfigMap changes
 spec:
   replicas: 1
   selector:
@@ -14,6 +16,8 @@ spec:
     metadata:
       labels:
         app: anti-corruption-layer
+      annotations:
+        config-hash: "{{ .Values.configmap | sha256sum }}"  # ✅ Ensures pod restart when ConfigMap updates
     spec:
       containers:
         - name: flask-app
