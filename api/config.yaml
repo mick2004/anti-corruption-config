@@ -7,7 +7,7 @@ mappings:
       created_at: myapi_created_at
 
   - api_endpoint: /myapi3
-    query: "SELECT id, name, created_at FROM othertable;"
+    query: "SELECT id,  name, created_at FROM othertable;"
     columns:
       id: myapi2_id
       name: myapi2_name
