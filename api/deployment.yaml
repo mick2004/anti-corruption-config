@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: anti-corruption-layer
+  namespace: api
+  labels:
+    app: anti-corruption-layer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: anti-corruption-layer
+  template:
+    metadata:
+      labels:
+        app: anti-corruption-layer
+    spec:
+      containers:
+        - name: flask-app
+          image: mick2008nit/anti-corruption-layer-k8:latest
+          volumeMounts:
+            - name: config-volume
+              mountPath: /app/config.yaml
+              subPath: config.yaml
+      volumes:
+        - name: config-volume
+          configMap:
+            name: api-config

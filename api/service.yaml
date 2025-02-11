@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: anti-corruption-api
+  namespace: api
+spec:
+  selector:
+    app: anti-corruption-layer
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      nodePort: 31594
+  type: NodePort

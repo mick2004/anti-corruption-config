@@ -2,21 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - api-config.yaml
+  - deployment.yaml
+  - service.yaml
 
 patches:
   - target:
       kind: Deployment
       name: anti-corruption-layer
       namespace: api
-    patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: anti-corruption-layer
-        namespace: api
-      spec:
-        template:
-          metadata:
-            annotations:
-              argocd.argoproj.io/sync-wave: "1"
-              rollout/restart: "true"
+    path: rollout-patch.yaml
