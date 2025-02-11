@@ -1,0 +1,30 @@
+# Terraform
+*.tfstate
+*.tfstate.backup
+.terraform/
+.terraform.lock.hcl
+terraform.tfvars
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+.envrc
+*.venv/
+venv/
+Pipfile.lock
+poetry.lock
+*.egg-info/
+dist/
+build/
+
+# YAML
+*.yaml~
+*.yml~
+*.swp
