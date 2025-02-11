@@ -6,7 +6,7 @@ metadata:
   labels:
     app: anti-corruption-layer
   annotations:
-    config-hash: "{{ .Values.configmap | sha256sum }}"  # ✅ Forces pod restart when ConfigMap changes
+    config-hash: "{{`{{ (index .data \"config.yaml\") | sha256sum }}`}}"  # ✅ Correct syntax for Kustomize
 spec:
   replicas: 1
   selector:
@@ -17,7 +17,7 @@ spec:
       labels:
         app: anti-corruption-layer
       annotations:
-        config-hash: "{{ .Values.configmap | sha256sum }}"  # ✅ Ensures pod restart when ConfigMap updates
+        config-hash: "{{`{{ (index .data \"config.yaml\") | sha256sum }}`}}"  # ✅ Ensures pod restart when ConfigMap updates
     spec:
       containers:
         - name: flask-app
