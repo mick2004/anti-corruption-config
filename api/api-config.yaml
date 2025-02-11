@@ -14,7 +14,7 @@ data:
           id: myapi_id
           name: myapi_name
           created_at: myapi_created_at
-      - api_endpoint: /myapi3
+      - api_endpoint: /myapi4
         query: "SELECT id, name, created_at FROM othertable;"
         columns:
           id: myapi2_id
