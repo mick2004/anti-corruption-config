@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-config
+  namespace: api
+data:
+  config.yaml: |
+    mappings:
+      - api_endpoint: /myapi
+        query: "SELECT * FROM mytable;"
+        columns:
+          id: myapi_id
+          name: myapi_name
+          created_at: myapi_created_at
+      - api_endpoint: /myapi3
+        query: "SELECT id, name, created_at FROM othertable;"
+        columns:
+          id: myapi2_id
+          name: myapi2_name
+          created_at: myapi2_created_at
