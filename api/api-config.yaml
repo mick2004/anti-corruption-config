@@ -17,4 +17,5 @@ data:
         columns:
           id: myapi2_id
           name: myapi2_name
+          fname: myapi2_name
           created_at: myapi2_created_at
