@@ -2,3 +2,28 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - api-config.yaml
+configurations:
+  - api-config.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+images:
+  - name: myregistry.com/anti-corruption-api
+    newTag: latest  # ✅ Forces a re-sync with the latest image
+
+patches:
+  - target:
+      kind: Deployment
+      name: anti-corruption-layer
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: anti-corruption-layer
+      spec:
+        template:
+          metadata:
+            annotations:
+              argocd.argoproj.io/sync-wave: "1"
+              rollout/restart: "{{now | unixEpoch}}"
