@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: api-config
   namespace: api
+  annotations:
+    rollout/restart: "{{now | unixEpoch}}"  # ✅ This changes on every update, forcing a restart
 data:
   config.yaml: |
     mappings:
@@ -17,5 +19,4 @@ data:
         columns:
           id: myapi2_id
           name: myapi2_name
-          fname: myapi2_name
           created_at: myapi2_created_at
