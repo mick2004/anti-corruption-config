@@ -5,8 +5,6 @@ metadata:
   namespace: api
   labels:
     app: anti-corruption-layer
-  annotations:
-    config-hash: "{{`{{ (index .data \"config.yaml\") | sha256sum }}`}}"  # ✅ Correct syntax for Kustomize
 spec:
   replicas: 1
   selector:
@@ -16,12 +14,11 @@ spec:
     metadata:
       labels:
         app: anti-corruption-layer
-      annotations:
-        config-hash: "{{`{{ (index .data \"config.yaml\") | sha256sum }}`}}"  # ✅ Ensures pod restart when ConfigMap updates
     spec:
       containers:
         - name: flask-app
           image: localhost:32000/anti-corruption-api:latest
+          imagePullPolicy: Always
           volumeMounts:
             - name: config-volume
               mountPath: /app/config.yaml

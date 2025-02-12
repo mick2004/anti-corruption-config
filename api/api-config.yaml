@@ -4,7 +4,7 @@ metadata:
   name: api-config
   namespace: api
   annotations:
-    rollout/restart: "{{now | unixEpoch}}"  # ✅ This changes on every update, forcing a restart
+    rollout/restart: "{{now | unixEpoch}}"  # This changes on every update, forcing a restart
 data:
   config.yaml: |
     mappings:

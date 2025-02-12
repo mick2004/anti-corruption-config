@@ -4,4 +4,4 @@ metadata:
   name: anti-corruption-layer
   namespace: api
   annotations:
-    config-hash: "{{`{{ .Files.Get \"config.yaml\" | sha256sum }}`}}"  # ✅ Ensures pod restart on ConfigMap change
+    config-hash: "{{`{{ .Files.Get \"config.yaml\" | sha256sum }}`}}"  # Ensures pod restart on ConfigMap change

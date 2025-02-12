@@ -8,10 +8,10 @@ configMapGenerator:
   - name: api-config
     namespace: api
     files:
-      - config.yaml  # ✅ Generate ConfigMap dynamically instead of a static YAML file
+      - config.yaml  # Generate ConfigMap dynamically instead of a static YAML file
     options:
       annotations:
-        config-hash: "{{`{{ .Files.Get \"config.yaml\" | sha256sum }}`}}"  # ✅ Forces pod restart when ConfigMap changes
+        config-hash: "{{`{{ .Files.Get \"config.yaml\" | sha256sum }}`}}"  # Forces pod restart when ConfigMap changes
 
 patches:
   - target:
