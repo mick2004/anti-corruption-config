@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: flask-app
-          image: mick2008nit/anti-corruption-layer-k8:latest
+          image: localhost:32000/anti-corruption-api:latest
           volumeMounts:
             - name: config-volume
               mountPath: /app/config.yaml
