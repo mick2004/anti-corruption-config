@@ -4,5 +4,4 @@ metadata:
   name: anti-corruption-layer
   namespace: api
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
-    rollout/restart: "true"
+    config-hash: "{{`{{ .Files.Get \"config.yaml\" | sha256sum }}`}}"  # ✅ Ensures pod restart on ConfigMap change
